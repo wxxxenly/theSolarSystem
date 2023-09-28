@@ -1,25 +1,20 @@
 package thesolarsystem;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Класс, представляющий планету.
  */
 class Planet {
-    private final String color;
     private final String name;
-    private final int number;
+
     /**
      * Конструктор для создания объекта планеты.
      *
      * @param name Название планеты.
      */
-    public Planet(String name, String color, int number) {
+    public Planet(String name) {
         this.name = name;
-        this.color = color;
-        this.number =  number;
     }
+
     /**
      * Получить название планеты.
      *
@@ -29,11 +24,13 @@ class Planet {
         return name;
     }
 }
+
 /**
  * Класс, представляющий звезду.
  */
 class Star {
     private final String name;
+
     /**
      * Конструктор для создания объекта звезды.
      *
@@ -42,6 +39,7 @@ class Star {
     public Star(String name) {
         this.name = name;
     }
+
     /**
      * Получить название звезды.
      *
@@ -51,11 +49,13 @@ class Star {
         return name;
     }
 }
+
 /**
  * Класс, представляющий луну.
  */
 class Moon {
     private final String name;
+
     /**
      * Конструктор для создания объекта луны.
      *
@@ -64,6 +64,7 @@ class Moon {
     public Moon(String name) {
         this.name = name;
     }
+
     /**
      * Получить название луны.
      *
@@ -73,13 +74,15 @@ class Moon {
         return name;
     }
 }
+
 /**
  * Класс, представляющий звездную систему.
  */
 class StarSystem {
     private final Star star;
     private final Moon moon;
-    private final List<Planet> planets;
+    private final Planet[] planets; // Используем массив для хранения планет
+
     /**
      * Конструктор для создания объекта звездной системы.
      *
@@ -89,8 +92,9 @@ class StarSystem {
     public StarSystem(Star star, Moon moon) {
         this.star = star;
         this.moon = moon;
-        this.planets = new ArrayList<>();
+        this.planets = new Planet[10]; // Создаем массив для хранения до 10 планет
     }
+
     /**
      * Получить название звезды в системе.
      *
@@ -99,21 +103,49 @@ class StarSystem {
     public String getNameStar() {
         return star.getName();
     }
+
     /**
      * Добавить планету в систему.
      *
      * @param planet Планета для добавления.
      */
     public void addPlanet(Planet planet) {
-        planets.add(planet);
+        for (int i = 0; i < planets.length; i++) {
+            if (planets[i] == null) { // Ищем первый свободный слот в массиве
+                planets[i] = planet; // Добавляем планету в массив
+                break; // Выходим из цикла после добавления
+            }
+        }
     }
+    
     /**
-     * Вывести количество планет в системе.
+     * Получить количество планет в системе.
      *
      * @return Количество планет.
      */
     public int getPlanetCount() {
-        return planets.size();
+        int count = 0;
+        for (Planet planet : planets) {
+            if (planet != null) {
+                count++;
+            } else {
+                break; // После последней планеты выходим из цикла
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Получить название луны в системе.
+     *
+     * @return Название луны.
+     */
+    public String getNameMoon() {
+        return moon.getName();
+    }
+
+    public Planet getPlanet(int i) {
+        return planets[i];
     }
 }
 
@@ -122,20 +154,33 @@ public class TheSolarSystem {
     public static void main(String[] args) {
         Star sun;
         Moon moon;
-        Planet earth, mars;
+        Planet earth, mars, jupiter, saturn;
 
         sun = new Star("Солнце");
         moon = new Moon("Луна");
-        earth = new Planet("Земля","Зелёная",3);
-        mars = new Planet("Марс","Красный",4);
+
+        earth = new Planet("Земля");
+        mars = new Planet("Марс");
+        jupiter = new Planet("Юпитер");
+        saturn = new Planet("Сатурн");
 
         StarSystem solarSystem;
         solarSystem = new StarSystem(sun, moon);
 
         solarSystem.addPlanet(earth);
         solarSystem.addPlanet(mars);
+        solarSystem.addPlanet(jupiter);
+        solarSystem.addPlanet(saturn);
 
         System.out.println("Название звезды: " + solarSystem.getNameStar());
         System.out.println("Количество планет в системе: " + solarSystem.getPlanetCount());
+
+        // Выводим полученные планеты
+        System.out.println("Планеты в системе:");
+        for (int i = 0; i < solarSystem.getPlanetCount(); i++) {
+            System.out.println(solarSystem.getPlanet(i).getName());
+        }
+
+        System.out.println("Спутник: " + solarSystem.getNameMoon());
     }
 }
