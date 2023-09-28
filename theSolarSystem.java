@@ -143,10 +143,6 @@ class StarSystem {
     public String getNameMoon() {
         return moon.getName();
     }
-
-    public Planet getPlanet(int i) {
-        return planets[i];
-    }
 }
 
 public class TheSolarSystem {
@@ -174,12 +170,6 @@ public class TheSolarSystem {
 
         System.out.println("Название звезды: " + solarSystem.getNameStar());
         System.out.println("Количество планет в системе: " + solarSystem.getPlanetCount());
-
-        // Выводим полученные планеты
-        System.out.println("Планеты в системе:");
-        for (int i = 0; i < solarSystem.getPlanetCount(); i++) {
-            System.out.println(solarSystem.getPlanet(i).getName());
-        }
 
         System.out.println("Спутник: " + solarSystem.getNameMoon());
     }
