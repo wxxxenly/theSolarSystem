@@ -123,7 +123,7 @@ class StarSystem {
      *
      * @return Количество планет.
      */
-    public int getPlanetCount() {
+    public void printPlanet() {
         int count = 0;
         for (Planet planet : planets) {
             if (planet != null) {
@@ -132,7 +132,7 @@ class StarSystem {
                 break; // После последней планеты выходим из цикла
             }
         }
-        return count;
+        System.out.println("Количество планет в системе: " + count);
     }
 
     /**
@@ -169,7 +169,7 @@ public class TheSolarSystem {
         solarSystem.addPlanet(saturn);
 
         System.out.println("Название звезды: " + solarSystem.getNameStar());
-        System.out.println("Количество планет в системе: " + solarSystem.getPlanetCount());
+        solarSystem.printPlanet();
 
         System.out.println("Спутник: " + solarSystem.getNameMoon());
     }
