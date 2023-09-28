@@ -4,6 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Класс, представляющий планету.
+ */
+class Planet {
+    private final String color;
+    private final String name;
+    private final int number;
+    /**
+     * Конструктор для создания объекта планеты.
+     *
+     * @param name Название планеты.
+     */
+    public Planet(String name, String color, int number) {
+        this.name = name;
+        this.color = color;
+        this.number =  number;
+    }
+    /**
+     * Получить название планеты.
+     *
+     * @return Название планеты.
+     */
+    public String getName() {
+        return name;
+    }
+}
+/**
  * Класс, представляющий звезду.
  */
 class Star {
@@ -48,28 +74,6 @@ class Moon {
     }
 }
 /**
- * Класс, представляющий планету.
- */
-class Planet {
-    private final String name;
-    /**
-     * Конструктор для создания объекта планеты.
-     *
-     * @param name Название планеты.
-     */
-    public Planet(String name) {
-        this.name = name;
-    }
-    /**
-     * Получить название планеты.
-     *
-     * @return Название планеты.
-     */
-    public String getName() {
-        return name;
-    }
-}
-/**
  * Класс, представляющий звездную систему.
  */
 class StarSystem {
@@ -88,14 +92,6 @@ class StarSystem {
         this.planets = new ArrayList<>();
     }
     /**
-     * Получить название луны в системе.
-     *
-     * @return Название луны.
-     */
-    public String getNameMoon() {
-        return moon.getName();
-    }
-    /**
      * Получить название звезды в системе.
      *
      * @return Название звезды.
@@ -112,7 +108,7 @@ class StarSystem {
         planets.add(planet);
     }
     /**
-     * Получить количество планет в системе.
+     * Вывести количество планет в системе.
      *
      * @return Количество планет.
      */
@@ -130,8 +126,8 @@ public class TheSolarSystem {
 
         sun = new Star("Солнце");
         moon = new Moon("Луна");
-        earth = new Planet("Земля");
-        mars = new Planet("Марс");
+        earth = new Planet("Земля","Зелёная",3);
+        mars = new Planet("Марс","Красный",4);
 
         StarSystem solarSystem;
         solarSystem = new StarSystem(sun, moon);
@@ -140,7 +136,6 @@ public class TheSolarSystem {
         solarSystem.addPlanet(mars);
 
         System.out.println("Название звезды: " + solarSystem.getNameStar());
-        System.out.println("Название луны: " + solarSystem.getNameMoon());
-        System.out.println("Число планет в солнечной системе: " + solarSystem.getPlanetCount());
+        System.out.println("Количество планет в системе: " + solarSystem.getPlanetCount());
     }
 }
