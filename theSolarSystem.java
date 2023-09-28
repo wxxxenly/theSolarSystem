@@ -100,8 +100,8 @@ class StarSystem {
      *
      * @return Название звезды.
      */
-    public String getNameStar() {
-        return star.getName();
+    public void getNameStar() {
+        System.out.println("Название звезды: " + star.getName());
     }
 
     /**
@@ -167,9 +167,8 @@ public class TheSolarSystem {
         solarSystem.addPlanet(mars);
         solarSystem.addPlanet(jupiter);
         solarSystem.addPlanet(saturn);
-
-        System.out.println("Название звезды: " + solarSystem.getNameStar());
         solarSystem.printPlanet();
+        solarSystem.getNameStar();
 
         System.out.println("Спутник: " + solarSystem.getNameMoon());
     }
